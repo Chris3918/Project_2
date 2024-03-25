@@ -1,0 +1,76 @@
+
+
+@import url("ui/customColors.css");
+
+.force-tocenter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .mygrid-layout {
+    display: grid;
+    grid-template-columns: repeat(2, 325px);
+    grid-auto-rows: minmax(90px, auto);
+    gap: 1rem;
+  }
+  
+  .mycard {
+    border-radius: 0.5rem;
+    border-width: 0.5px; /* border */
+    background: var(--zinc-950);
+    border-color: var(--zinc-800);
+    border-style: solid; /* Makes the border visible */
+    width: 100%;
+    height: 100%;
+    /* word-wrap: break-word; */
+    /* max-width: 325px; */
+  }
+  
+  .mycard-inner {
+    padding: .70rem;
+  }
+  
+  .mycard-inner-Label {
+    color: var(--zinc-50);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    margin-bottom: .1rem;
+    /* font-size: 1.5rem; */
+  }
+  
+  .mycard-inner-cardDescription {
+    color: var(--zinc-400);
+    font-size: 0.75rem; /* Approximate equivalent of Tailwind's text-xs */
+    line-height: 1.35; /* Approximate equivalent of Tailwind's leading-snug */
+    /* font-family: sans-serif; */
+    /* font-weight: bold; */
+  }
+  
+
+
+  /* not being used */
+  .mybutton-style {
+    background-color: var(--zinc-950);
+    color: whitesmoke;
+    border-radius: 6px;
+    font-size: 12px;
+    line-height: 16px;
+    padding: 8px; /* Adjust padding as needed */
+    width: 50px; /* Set to desired size */
+    height: 50px; /* Set to same value as width */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-color: var(--zinc-800);
+    border-radius: 0.25rem;
+    border-width: 0.5px; /* border */
+  }
+
+
+
+
+
+  

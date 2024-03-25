@@ -1,0 +1,118 @@
+/* @import url("ui/customColors.css"); */
+
+.force-tocenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.mygrid-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  width: 50vw;
+  height: 50vh;
+  gap: 1rem;
+}
+
+.nested-grid {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  height: 100%;
+  gap: 1rem;
+}
+
+.mycard {
+  border-radius: 0.5rem;
+  border-width: 0.5px;
+  background: var(--zinc-950);
+  border-color: var(--zinc-800);
+  border-style: solid;
+  width: 100%;
+  height: 100%;
+  /* word-wrap: break-word; */
+  /* max-width: 325px; */
+}
+
+.top-artist-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.top-artist-container-header {
+  height: 10%;
+  font-weight: 600;
+  /* padding: 1rem; */
+  /* border-width: 0.5px; */
+  border-color: var(--zinc-800);
+  border-style: solid;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.top-artist-container-footer {
+  height: 5%;
+  border-color: var(--zinc-800);
+  /* border-width: 0.5px; */
+  border-style: solid;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pagination {
+  display: flex;
+  align-items: center;
+  font-size: 1vh;
+  padding-bottom: 0.5rem;
+}
+.pagination-button {
+  color: var(--zinc-400);
+  border: none;
+  padding: 0.5rem 1rem;
+  margin: 0 1rem;
+  cursor: pointer;
+}
+.pagination-page-number {
+  /* font-size: 1rem; */
+  color: var(--zinc-400);
+}
+
+.top-artist-list-container {
+  width: 100%;
+  height: 85%;
+  /* border-width: 0.5px; */
+  border-color: var(--zinc-800);
+}
+
+.top-artist-list {
+  height: 100%;
+  list-style: none;
+}
+
+.top-artist-list-record {
+  padding-left: 5%;
+  display: flex;
+  align-items: center;
+  min-height: 10%;
+  max-height: 10%;
+  border-bottom: 1px solid var(--zinc-800);
+  background: var(--zinc-950);
+  width: 80%;
+  margin: 0 auto; /* Center the container */
+}
+
+.top-artist-list-record-text {
+  color: var(--zinc-400);
+  font-size: 1.2vh;
+}
+
+.top-artist-list-record:last-child {
+  border-bottom: none;
+}
+
+.top-artist-list-record:hover {
+  background: var(--zinc-900);
+}
