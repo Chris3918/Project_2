@@ -35,7 +35,7 @@
 }
 
 .top-artist-container {
-  display: flex;
+  /* display: flex; what is this doing*/ 
   flex-direction: column;
   height: 100%;
 }
@@ -51,6 +51,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.radio-button-container {
+  border-width: 0.5px;
+  width: 45px;
+  height: 15px;
 }
 .top-artist-container-footer {
   height: 5%;

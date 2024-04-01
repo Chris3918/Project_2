@@ -1,8 +1,8 @@
-import { SpotifyTokenResponse } from "../../dataStructures/spotifyStructures/spotifyToken";
-import { SpotifyArtist } from "../../dataStructures/spotifyStructures/getArtistInfo";
-import { UserTopArtistsAndTracks } from "../../dataStructures/spotifyStructures/getUserTopArtistsAndTracks";
-import { SpotifyTokenWithAuthResponse } from "../../dataStructures/spotifyStructures/spotifyTokenWithAuth";
-import { RefreshTokenResponse } from "../../dataStructures/spotifyStructures/refreshTokenResponse";
+import { SpotifyTokenResponse } from "../../spotify/interfaces/spotifyToken";
+import { SpotifyArtist } from "../../spotify/interfaces/getArtistInfo";
+import { UserTopArtistsAndTracks } from "../../spotify/interfaces/getUserTopArtistsAndTracks";
+import { SpotifyTokenWithAuthResponse } from "../../spotify/interfaces/spotifyTokenWithAuth";
+import { RefreshTokenResponse } from "../../spotify/interfaces/refreshTokenResponse";
 
 export class SpotifyAPI_IS {
   private clientId: string;

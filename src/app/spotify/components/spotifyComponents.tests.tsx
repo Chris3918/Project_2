@@ -1,11 +1,11 @@
 "use client";
-import { SpotifyTokenResponse } from "../../dataStructures/spotifyStructures/spotifyToken";
-import { SpotifyTokenWithAuthResponse } from "../../dataStructures/spotifyStructures/spotifyTokenWithAuth";
-import { RefreshTokenResponse } from "../../dataStructures/spotifyStructures/refreshTokenResponse";
+import { SpotifyTokenResponse } from "../interfaces/spotifyToken";
+import { SpotifyTokenWithAuthResponse } from "../interfaces/spotifyTokenWithAuth";
+import { RefreshTokenResponse } from "../interfaces/refreshTokenResponse";
 import { SpotifyAPI_IS } from "../../Connections/Connections_IS/spotifyApi_IS";
 import React, { useState, useEffect } from "react";
-import { SpotifyArtist } from "@/app/dataStructures/spotifyStructures/getArtistInfo";
-import { UserTopArtistsAndTracks } from "@/app/dataStructures/spotifyStructures/getUserTopArtistsAndTracks";
+import { SpotifyArtist } from "@/app/spotify/interfaces/getArtistInfo";
+import { UserTopArtistsAndTracks } from "@/app/spotify/interfaces/getUserTopArtistsAndTracks";
 import { SpotifyAPI_CS } from "@/app/Connections/Connections_CS/spotifyApi_CS";
 
 

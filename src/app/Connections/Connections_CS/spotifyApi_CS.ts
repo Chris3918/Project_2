@@ -1,6 +1,6 @@
 //This is a wrapper module, customizations can be made here to the original _IS file. This is the file that will be imported into the rest of the application.
-import { RefreshTokenResponse } from '../../dataStructures/spotifyStructures/refreshTokenResponse';
-import { UserTopArtistsAndTracks } from '../../dataStructures/spotifyStructures/getUserTopArtistsAndTracks';
+import { RefreshTokenResponse } from '../../spotify/interfaces/refreshTokenResponse';
+import { UserTopArtistsAndTracks } from '../../spotify/interfaces/getUserTopArtistsAndTracks';
 import { SpotifyAPI_IS } from '../Connections_IS/spotifyApi_IS';
 import NodeCache from 'node-cache';
 
