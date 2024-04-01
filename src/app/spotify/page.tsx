@@ -1,4 +1,4 @@
-import{ CardGrid } from "../ui/spotifyComponents/spotifyComponents";
+import{ CardGrid } from "./components/spotifyComponents";
 
 function MyPage() {
   return (
