@@ -1,6 +1,6 @@
 
 
-@import url("ui/customColors.css");
+@import url(styles/customColors.css);
 
 .force-tocenter {
     display: flex;
