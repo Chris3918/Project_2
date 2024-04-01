@@ -50,7 +50,7 @@ export function MyTopArtistCard() {
     <div className="top-artist-container">
       <header className="top-artist-container-header">
         Top Artists
-        {/* <div className="radio-button-container"></div> */}
+        <div className="radio-button-container"></div>
       </header>
       <main className="top-artist-list-container">
         <ol className="top-artist-list">
