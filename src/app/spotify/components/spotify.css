@@ -35,7 +35,7 @@
 }
 
 .top-artist-container {
-  /* display: flex; what is this doing*/ 
+  /* display: flex; what is this doing*/
   flex-direction: column;
   height: 100%;
 }
@@ -44,25 +44,74 @@
   height: 10%;
   font-weight: 600;
   /* padding: 1rem; */
-  border-width: 0.5px;
-  border-color: var(--zinc-800);
+  /* border-width: 0.5px;
+  border-color: var(--zinc-800); */
   border-style: solid;
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: end;
   justify-content: center;
   position: relative;
   font-size: 2vh;
 }
-.radio-button-container {
-  border-width: 0.5px;
-  border-color: var(--zinc-800);
-  width: 45px;
-  height: 15px;
+
+.radio-button-section-container {
+  /* border-width: 0.5px;
+  border-color: var(--zinc-800); */
+  width: 30%;
+  height: 45%;
   position: absolute;
   top: 0;
   right: 0;
+  display: flex;
 }
+
+.radio-button-container {
+  /* border-width: 0.5px;
+  border-color: var(--zinc-800); */
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 33%;
+}
+
+.radio-button {
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  outline: none;
+  box-shadow: 0 0 0 2px var(--zinc-800);
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.radio-button:checked {
+  box-shadow: 0 0 0 2px var(--zinc-400);
+}
+
+.radio-button:checked::after {
+  content: "";
+  display: block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--zinc-400);
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.radio-button-label {
+  margin-left: 10px;
+  color: var(--zinc-400);
+  cursor: pointer;
+}
+
+
 .top-artist-container-footer {
   height: 5%;
   border-color: var(--zinc-800);
@@ -73,12 +122,14 @@
   align-items: center;
   justify-content: center;
 }
+
 .pagination {
   display: flex;
   align-items: center;
   font-size: 1vh;
   padding-bottom: 0.5rem;
 }
+
 .pagination-button {
   color: var(--zinc-400);
   border: none;
@@ -86,6 +137,7 @@
   margin: 0 1rem;
   cursor: pointer;
 }
+
 .pagination-page-number {
   /* font-size: 1rem; */
   color: var(--zinc-400);
@@ -112,7 +164,8 @@
   border-bottom: 1px solid var(--zinc-800);
   background: var(--zinc-950);
   width: 80%;
-  margin: 0 auto; /* Center the container */
+  margin: 0 auto;
+  /* Center the container */
 }
 
 .top-artist-list-record-text {
