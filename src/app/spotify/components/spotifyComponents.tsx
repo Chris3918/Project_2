@@ -21,7 +21,10 @@ export function CardGrid() {
 }
 
 export function MyTopArtistCard() {
-  let time_range = "short_term";
+  const [time_range, setTimeRange] = useState("short_term");
+  const handleTimeRangeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setTimeRange(event.target.value);
+  };
   const topArtistsFullList = useGetTopArtistsFullList(time_range);
   const pageSize = 10;
   const [currentPage, setCurrentPage] = useState(1);
@@ -50,7 +53,35 @@ export function MyTopArtistCard() {
     <div className="top-artist-container">
       <header className="top-artist-container-header">
         Top Artists
-        <div className="radio-button-container"></div>
+        <div className="radio-button-section-container">
+          <div className="radio-button-container">
+            <input
+              type="radio"
+              value="short_term"
+              checked={time_range === "short_term"}
+              onChange={handleTimeRangeChange}
+              className="radio-button"
+            />
+          </div>
+          <div className="radio-button-container">
+            <input
+              type="radio"
+              value="medium_term"
+              checked={time_range === "medium_term"}
+              onChange={handleTimeRangeChange}
+              className="radio-button"
+            />
+          </div>
+          <div className="radio-button-container">
+            <input
+              type="radio"
+              value="long_term"
+              checked={time_range === "long_term"}
+              onChange={handleTimeRangeChange}
+              className="radio-button"
+            />
+          </div>
+        </div>
       </header>
       <main className="top-artist-list-container">
         <ol className="top-artist-list">
