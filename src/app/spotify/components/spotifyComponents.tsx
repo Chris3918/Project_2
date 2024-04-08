@@ -1,7 +1,8 @@
 "use client";
-import React, { useState, useMemo, useCallback } from "react";
+import React, { useState, useMemo, useCallback, useEffect } from "react";
 import "./spotify.css";
 import { useGetTopArtistsFullList } from "@/app/spotify/hooks/spotifyHooks";
+import { TimeRangeRadioButtons } from "@/app/spotify/components/TimeRangeRadioButtons";
 
 export function CardGrid() {
   return (
@@ -21,7 +22,8 @@ export function CardGrid() {
 }
 
 export function MyTopArtistCard() {
-  const [time_range, setTimeRange] = useState("short_term");
+  const time_ranges = ["short_term", "medium_term", "long_term"];
+  const [time_range, setTimeRange] = useState("medium_term");
   const handleTimeRangeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTimeRange(event.target.value);
   };
@@ -49,39 +51,19 @@ export function MyTopArtistCard() {
     }
   }, [currentPage, totalPages]);
 
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [topArtistsFullList]);
+
   return (
     <div className="top-artist-container">
       <header className="top-artist-container-header">
         Top Artists
-        <div className="radio-button-section-container">
-          <div className="radio-button-container">
-            <input
-              type="radio"
-              value="short_term"
-              checked={time_range === "short_term"}
-              onChange={handleTimeRangeChange}
-              className="radio-button"
-            />
-          </div>
-          <div className="radio-button-container">
-            <input
-              type="radio"
-              value="medium_term"
-              checked={time_range === "medium_term"}
-              onChange={handleTimeRangeChange}
-              className="radio-button"
-            />
-          </div>
-          <div className="radio-button-container">
-            <input
-              type="radio"
-              value="long_term"
-              checked={time_range === "long_term"}
-              onChange={handleTimeRangeChange}
-              className="radio-button"
-            />
-          </div>
-        </div>
+        <TimeRangeRadioButtons
+          time_ranges={time_ranges}
+          selectedTimeRange={time_range}
+          onTimeRangeChange={handleTimeRangeChange}
+        />
       </header>
       <main className="top-artist-list-container">
         <ol className="top-artist-list">
@@ -109,100 +91,3 @@ export function MyTopArtistCard() {
   );
 }
 
-// export function MyTopArtistCard() {
-//   let time_range = "short_term";
-//   const topArtistsFullList = useGetTopArtistsFullList(time_range);
-//   const pageSize = 10;
-//   const [currentPage, setCurrentPage] = useState(1);
-//   const totalPages = Math.ceil(topArtistsFullList.length / pageSize);
-//   const startIndex = (currentPage - 1) * pageSize;
-//   const endIndex = startIndex + pageSize;
-//   const currentArtists = topArtistsFullList.slice(startIndex, endIndex);
-
-//   const goToPreviousPage = () => {
-//     if (currentPage > 1) {
-//       setCurrentPage(currentPage - 1);
-//     }
-//   };
-
-//   const goToNextPage = () => {
-//     if (currentPage < totalPages) {
-//       setCurrentPage(currentPage + 1);
-//     }
-//   };
-
-//   return (
-//     <div className="top-artist-container">
-//       <header className="top-artist-container-header">Top Artists</header>
-//       <main className="top-artist-list-container">
-//         <ol className="top-artist-list">
-//           {currentArtists.map((artist, index) => (
-//             <li className="top-artist-list-record" key={index}>
-//               <h2 className="top-artist-list-record-text">
-//                 {startIndex + index + 1}. {artist.name}
-//               </h2>
-//             </li>
-//           ))}
-//         </ol>
-//       </main>
-//       <footer className="top-artist-container-footer">
-//         <div className="pagination">
-//           <button className="pagination-button" onClick={goToPreviousPage}>
-//             &lt;
-//           </button>
-//           <span className="pagination-page-number">{currentPage}</span>
-//           <button className="pagination-button" onClick={goToNextPage}>
-//             &gt;
-//           </button>
-//         </div>
-//       </footer>
-//     </div>
-//   );
-// }
-
-// export function MyTopArtistCard() {
-//   const [topArtists, setTopArtists] = useState<
-//     UserTopArtistsAndTracks.SpotifyItem[]
-//   >([]);
-
-//   const spotifyApi = useMemo(() => new SpotifyAPI_CS(), []); //    const spotifyApi = new SpotifyAPI_CS();
-
-//   useEffect(() => {
-//     const fetchTopArtists = async () => {
-//       const time_range = "short_term";
-//       const limit = 10;
-//       try {
-//         const response = await spotifyApi.getUserTopArtists(time_range, limit);
-//         setTopArtists(response.items);
-//       } catch (error) {
-//         console.error(error);
-//       }
-//     };
-
-//     fetchTopArtists();
-//   }, [spotifyApi]);
-
-//   return (
-//     <div className="top-artist-container">
-//       <header className="top-artist-container-header">Top Artists</header>
-//       <main className="top-artist-list-container">
-//         <ol className="top-artist-list">
-//           {topArtists.map((artist, index) => (
-//             <li className="top-artist-list-record" key={index}>
-//               <h2 className="top-artist-list-record-text">
-//                 {index + 1}. {artist.name}
-//               </h2>
-//             </li>
-//           ))}
-//         </ol>
-//       </main>
-//       <footer className="top-artist-container-footer">
-//         <div className="pagination">
-//           <button className="pagination-button">&lt;</button>
-//           <span className="pagination-page-number">1</span>
-//           <button className="pagination-button">&gt;</button>
-//         </div>
-//       </footer>
-//     </div>
-//   );
-// }
