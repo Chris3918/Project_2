@@ -3,6 +3,8 @@ import React, { useState, useMemo, useCallback, useEffect } from "react";
 import "./spotify.css";
 import { useGetTopArtistsFullList } from "@/app/spotify/hooks/spotifyHooks";
 import { TimeRangeRadioButtons } from "@/app/spotify/components/TimeRangeRadioButtons";
+import { Pagination } from "@/app/spotify/components/pagination";
+import { TopArtistList } from "@/app/spotify/components/topArtistList";
 
 export function CardGrid() {
   return (
@@ -66,28 +68,15 @@ export function MyTopArtistCard() {
         />
       </header>
       <main className="top-artist-list-container">
-        <ol className="top-artist-list">
-          {currentArtists.map((artist, index) => (
-            <li className="top-artist-list-record" key={index}>
-              <h2 className="top-artist-list-record-text">
-                {startIndex + index + 1}. {artist.name}
-              </h2>
-            </li>
-          ))}
-        </ol>
+        <TopArtistList currentArtists={currentArtists} startIndex={startIndex} />
       </main>
       <footer className="top-artist-container-footer">
-        <div className="pagination">
-          <button className="pagination-button" onClick={goToPreviousPage}>
-            &lt;
-          </button>
-          <span className="pagination-page-number">{currentPage}</span>
-          <button className="pagination-button" onClick={goToNextPage}>
-            &gt;
-          </button>
-        </div>
+        <Pagination // prettier-ignore
+          currentPage={currentPage}
+          goToPreviousPage={goToPreviousPage}
+          goToNextPage={goToNextPage}
+        />
       </footer>
     </div>
   );
 }
-
