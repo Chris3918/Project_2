@@ -1,5 +1,5 @@
 import React from "react";
-import "./spotify.css";
+import "../spotify.css";
 
 interface PaginationProps {
   currentPage: number;

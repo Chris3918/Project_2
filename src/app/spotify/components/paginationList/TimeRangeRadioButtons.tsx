@@ -1,5 +1,5 @@
 import React from "react";
-import "./spotify.css";
+import "../spotify.css";
 
 const buttonHoverText: { [key: string]: string } = {
   short_term: "Short term: Approximately last 4 weeks",

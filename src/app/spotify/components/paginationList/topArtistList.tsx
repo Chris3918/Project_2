@@ -1,6 +1,6 @@
 import React from "react";
-import "./spotify.css";
-import { UserTopArtistsAndTracks } from "../../spotify/interfaces/getUserTopArtistsAndTracks";
+import "../spotify.css";
+import { UserTopArtistsAndTracks } from "../../interfaces/getUserTopArtistsAndTracks";
 
 interface TopArtistListProps {
   currentArtists: UserTopArtistsAndTracks.SpotifyItem[];
