@@ -29,6 +29,9 @@ function MyTopArtistCard() {
   const pageSize = 10;
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(topArtistsFullList.length / pageSize);
+  const startIndex = (currentPage - 1) * pageSize;
+  const endIndex = startIndex + pageSize;
+  const currentArtists = topArtistsFullList.slice(startIndex, endIndex);
 
   const goToPreviousPage = useCallback(() => {
     if (currentPage > 1) {
@@ -53,7 +56,7 @@ function MyTopArtistCard() {
         <TimeRangeSelector time_range={time_range} setTimeRange={setTimeRange} />
       </header>
       <main className="top-artist-list-container">
-        <TopArtists topArtistsFullList={topArtistsFullList} currentPage={currentPage} pageSize={pageSize} />
+        <TopArtists currentArtists={currentArtists} startIndex={startIndex} />
       </main>
       <footer className="top-artist-container-footer">
         <ArtistPagination
@@ -120,6 +123,23 @@ function MyTopArtistCard() {
 //           goToPreviousPage={goToPreviousPage}
 //           goToNextPage={goToNextPage}
 //         />
+//       </footer>
+//     </div>
+//   );
+// }
+
+// export function MyTopArtistCard() {
+//   return (
+//     <div className="top-artist-container">
+//       <header className="top-artist-container-header">
+//         Top Artists
+//         <TimeRangeSelector />
+//       </header>
+//       <main className="top-artist-list-container">
+//         <TopArtists />
+//       </main>
+//       <footer className="top-artist-container-footer">
+//         <ArtistPagination />
 //       </footer>
 //     </div>
 //   );
