@@ -43,19 +43,11 @@ export function TimeRangeSelector({ time_range, setTimeRange }: TimeRangeSelecto
  * @returns The component that displays the top artists for the current page.
  */
 interface TopArtistsProps {
-  topArtistsFullList: UserTopArtistsAndTracks.SpotifyItem[];
-  currentPage: number;
-  pageSize: number;
+  currentArtists: UserTopArtistsAndTracks.SpotifyItem[];
+  startIndex: number;
 }
 
-export function TopArtists({ topArtistsFullList, currentPage, pageSize }: TopArtistsProps) {
-  const currentArtists = useMemo(() => {
-    const startIndex = (currentPage - 1) * pageSize;
-    const endIndex = startIndex + pageSize;
-    return topArtistsFullList.slice(startIndex, endIndex);
-  }, [topArtistsFullList, currentPage, pageSize]);
-  const startIndex = (currentPage - 1) * pageSize;
-
+export function TopArtists({ currentArtists, startIndex }: TopArtistsProps) {
   return <TopArtistList currentArtists={currentArtists} startIndex={startIndex} />;
 }
 
