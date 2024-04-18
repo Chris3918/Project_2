@@ -33,6 +33,9 @@ export function MyTopArtistCard() {
     const endIndex = startIndex + pageSize;
     return topArtistsFullList.slice(startIndex, endIndex);
   }, [topArtistsFullList, currentPage, pageSize]);
+  const startIndex = (currentPage - 1) * pageSize;
+  const endIndex = startIndex + pageSize;
+  const currentArtists = topArtistsFullList.slice(startIndex, endIndex);
 
   const goToPreviousPage = useCallback(() => {
     if (currentPage > 1) {
