@@ -144,3 +144,14 @@ function MyTopArtistCard() {
 //     </div>
 //   );
 // }
+
+
+
+
+// const goToPreviousPage = useCallback(() => {
+//   setCurrentPage(oldPage => oldPage > 1 ? oldPage - 1 : oldPage);
+// }, []);
+
+// const goToNextPage = useCallback(() => {
+//   setCurrentPage(oldPage => oldPage < totalPages ? oldPage + 1 : oldPage);
+// }, [totalPages]);
