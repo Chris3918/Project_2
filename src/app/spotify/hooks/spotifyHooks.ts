@@ -28,3 +28,12 @@ export const useGetTopArtistsFullList = (time_range: string) => {
 };
 
 
+// Inefficiencies Found:
+// The useMemo hook is used to instantiate a new SpotifyAPI_CS object, but since the dependencies array is empty, this object will be created only once, and the memoization is not necessary. However, if the SpotifyAPI_CS constructor had side effects or was computationally expensive, memoization would be justified.
+// The useEffect hook within useGetTopArtistsFullList does not have any cleanup function for ongoing requests. If the component unmounts before the request completes, this could lead to a memory leak or state updates on an unmounted component.
+
+
+
+
+
+

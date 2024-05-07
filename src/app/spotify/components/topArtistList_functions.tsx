@@ -1,8 +1,8 @@
 import React, { useState, useMemo, useCallback, useEffect } from "react";
-import { TimeRangeRadioButtons } from "@/app/spotify/components/paginationList/TimeRangeRadioButtons";
-import { TopArtistList } from "./paginationList/topArtistList";
+import { TimeRangeRadioButtons } from "@/app/spotify/components/userTopArtist/components/timeRangeRadioButtons_component";
+import { TopArtistList } from "./userTopArtist/components/topArtistListRecords_component";
 import { UserTopArtistsAndTracks } from "@/app/spotify/interfaces/getUserTopArtistsAndTracks";
-import { Pagination } from "./paginationList/topArtistListPagination";
+import { Pagination } from "./userTopArtist/components/topArtistListPagination_component";
 
 
 /**
