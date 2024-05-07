@@ -1,14 +1,20 @@
 import React from "react";
-// import "../spotify.css";
 import "@/app/spotify/components/spotify.css";
 import { UserTopArtistsAndTracks } from "../../../interfaces/getUserTopArtistsAndTracks";
 
-interface TopArtistListProps {
+/**Presentation
+ * Renders a list of top artists.
+ *
+ * @param currentArtists - An array of current artists.
+ * @param startIndex - The starting index for the list.
+ * @returns The rendered list of top artists.
+ */
+interface TopArtistListRecordsProps {
   currentArtists: UserTopArtistsAndTracks.SpotifyItem[];
   startIndex: number;
 }
 
-export function TopArtistList({ currentArtists, startIndex }: TopArtistListProps) {
+export function TopArtistListRecords({ currentArtists, startIndex }: TopArtistListRecordsProps) {
   return (
     <ol className="top-artist-list">
       {currentArtists.map((artist, index) => (
@@ -22,13 +28,17 @@ export function TopArtistList({ currentArtists, startIndex }: TopArtistListProps
   );
 }
 
-interface TopArtistListOnChangeProps {
-  currentArtists: UserTopArtistsAndTracks.SpotifyItem[];
-  startIndex: number;
-}
-
-export function TopArtistListOnChange({ currentArtists, startIndex }: TopArtistListOnChangeProps) {
-  const topArtistListOnChangeComponent = <TopArtistList currentArtists={currentArtists} startIndex={startIndex} />;
+/**Container
+ * Renders the component for handling the change event of the top artist list.
+ *
+ * @param currentArtists - The array of current artists.
+ * @param startIndex - The index of the starting artist.
+ * @returns An object containing the rendered component.
+ */
+export function TopArtistListRecordsOnChange({ currentArtists, startIndex }: TopArtistListRecordsProps) {
+  const topArtistListOnChangeComponent = (
+    <TopArtistListRecords currentArtists={currentArtists} startIndex={startIndex} />
+  );
 
   return {
     topArtistListOnChangeComponent,
