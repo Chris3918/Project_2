@@ -2,11 +2,17 @@
 import React, { useState, useMemo, useCallback, useEffect } from "react";
 import "./spotify.css";
 import { useGetTopArtistsFullList } from "@/app/spotify/hooks/spotifyHooks";
-import { TimeRangeRadioButtons } from "@/app/spotify/components/paginationList/TimeRangeRadioButtons";
-import { Pagination } from "@/app/spotify/components/paginationList/topArtistListPagination";
-import { TopArtistList } from "@/app/spotify/components/paginationList/topArtistList";
-import { TimeRangeSelector, TopArtists, ArtistPagination } from "@/app/spotify/components/topArtistList_functions";
+import { TimeRangeRadioButtonsOnChange } from "@/app/spotify/components/userTopArtist/components/timeRangeRadioButtons_component";
+import { ArtistPaginationOnChange } from "@/app/spotify/components/userTopArtist/components/topArtistListPagination_component";
+import { TopArtistListOnChange } from "@/app/spotify/components/userTopArtist/components/topArtistListRecords_component";
+import { UserTopArtist } from "./userTopArtist/components/userTopArtistList_containerComponent";
+
 export function CardGrid() {
+  const { userTopArtist } = UserTopArtist({
+    pageSize: 10,
+    time_ranges: ["short_term", "medium_term", "long_term"],
+    defaultTimeRange: "medium_term",
+  });
   return (
     <div className="force-tocenter">
       <div className="mygrid-layout">
@@ -15,7 +21,8 @@ export function CardGrid() {
           <div className="mycard"></div>
         </div>
         <div className="mycard">
-          <MyTopArtistCard />
+          {userTopArtist}
+          {/* <MyTopArtistCard /> */}
         </div>
         <div className="mycard"></div>
       </div>
@@ -23,137 +30,57 @@ export function CardGrid() {
   );
 }
 
-function MyTopArtistCard() {
-  const [time_range, setTimeRange] = useState("medium_term");
-  const topArtistsFullList = useGetTopArtistsFullList(time_range);
-  const pageSize = 10;
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = Math.ceil(topArtistsFullList.length / pageSize);
-  const startIndex = (currentPage - 1) * pageSize;
-  const endIndex = startIndex + pageSize;
-  const currentArtists = topArtistsFullList.slice(startIndex, endIndex);
+// interface MyTopArtistCardProps {
+//   pageSize?: number;
+//   time_ranges?: string[];
+//   defaultTimeRange?: string;
+// }
 
-  const goToPreviousPage = useCallback(() => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  }, [currentPage]);
+// function MyTopArtistCard({
+//   pageSize = 10,
+//   time_ranges = ["short_term", "medium_term", "long_term"],
+//   defaultTimeRange = "medium_term",
+// }: MyTopArtistCardProps): JSX.Element {
+//   const { timeRangeRadioButtonsComponent, selectedTimeRangeButton } = TimeRangeRadioButtonsOnChange({
+//     defaultTimeRange,
+//     time_ranges,
+//   });
 
-  const goToNextPage = useCallback(() => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  }, [currentPage, totalPages]);
+//   const topArtistsFullList = useGetTopArtistsFullList(selectedTimeRangeButton);
 
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [topArtistsFullList]);
-
-  return (
-    <div className="top-artist-container">
-      <header className="top-artist-container-header">
-        Top Artists
-        <TimeRangeSelector time_range={time_range} setTimeRange={setTimeRange} />
-      </header>
-      <main className="top-artist-list-container">
-        <TopArtists currentArtists={currentArtists} startIndex={startIndex} />
-      </main>
-      <footer className="top-artist-container-footer">
-        <ArtistPagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          goToPreviousPage={goToPreviousPage}
-          goToNextPage={goToNextPage}
-        />
-      </footer>
-    </div>
-  );
-}
-
-// export function MyTopArtistCard() {
-//   const time_ranges = ["short_term", "medium_term", "long_term"];
-//   const [time_range, setTimeRange] = useState("medium_term");
-//   const handleTimeRangeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-//     setTimeRange(event.target.value);
-//   };
-//   const topArtistsFullList = useGetTopArtistsFullList(time_range);
-//   const pageSize = 10;
-//   const [currentPage, setCurrentPage] = useState(1);
-//   const totalPages = Math.ceil(topArtistsFullList.length / pageSize);
-//   const startIndex = (currentPage - 1) * pageSize;
-
-//   const currentArtists = useMemo(() => {
-//     const startIndex = (currentPage - 1) * pageSize;
-//     const endIndex = startIndex + pageSize;
-//     return topArtistsFullList.slice(startIndex, endIndex);
-//   }, [topArtistsFullList, currentPage, pageSize]);
-
-//   const goToPreviousPage = useCallback(() => {
-//     if (currentPage > 1) {
-//       setCurrentPage(currentPage - 1);
-//     }
-//   }, [currentPage]);
-
-//   const goToNextPage = useCallback(() => {
-//     if (currentPage < totalPages) {
-//       setCurrentPage(currentPage + 1);
-//     }
-//   }, [currentPage, totalPages]);
-
+//   const [resetTrigger, setResetTrigger] = useState(false); // New state to act as a reset trigger...used to let child component that topartistsfulllist has changed, radio button change was too fast and made page number reset to 1 before topartistsfulllist was updated
+//   // Toggle the resetTrigger flag whenever topArtistsFullList changes
 //   useEffect(() => {
-//     setCurrentPage(1);
+//     setResetTrigger((prev) => !prev);
 //   }, [topArtistsFullList]);
 
+//   // Pagination
+//   const { paginationComponent, startIndex, endIndex } = ArtistPaginationOnChange({
+//     totalArtistsCount: topArtistsFullList.length,
+//     pageSize,
+//     resetTrigger,
+//   });
+
+//   // Create current list by slicing the topArtistsFullList based on the start and end index provided by ArtistPaginationOnChange
+//   const currentArtists = useMemo(
+//     () => topArtistsFullList.slice(startIndex, endIndex),
+//     [topArtistsFullList, startIndex, endIndex]
+//   );
+
+//   // artist list display logic
+//   const { topArtistListOnChangeComponent } = TopArtistListOnChange({
+//     currentArtists,
+//     startIndex,
+//   });
+
 //   return (
 //     <div className="top-artist-container">
 //       <header className="top-artist-container-header">
 //         Top Artists
-//         <TimeRangeRadioButtons
-//           time_ranges={time_ranges}
-//           selectedTimeRange={time_range}
-//           onTimeRangeChange={handleTimeRangeChange}
-//         />
+//         {timeRangeRadioButtonsComponent}
 //       </header>
-//       <main className="top-artist-list-container">
-//         <TopArtistList currentArtists={currentArtists} startIndex={startIndex} />
-//       </main>
-//       <footer className="top-artist-container-footer">
-//         <Pagination // prettier-ignore
-//           currentPage={currentPage}
-//           goToPreviousPage={goToPreviousPage}
-//           goToNextPage={goToNextPage}
-//         />
-//       </footer>
+//       <main className="top-artist-list-container">{topArtistListOnChangeComponent}</main>
+//       <footer className="top-artist-container-footer">{paginationComponent}</footer>
 //     </div>
 //   );
 // }
-
-// export function MyTopArtistCard() {
-//   return (
-//     <div className="top-artist-container">
-//       <header className="top-artist-container-header">
-//         Top Artists
-//         <TimeRangeSelector />
-//       </header>
-//       <main className="top-artist-list-container">
-//         <TopArtists />
-//       </main>
-//       <footer className="top-artist-container-footer">
-//         <ArtistPagination />
-//       </footer>
-//     </div>
-//   );
-// }
-
-
-
-
-// const goToPreviousPage = useCallback(() => {
-//   setCurrentPage(oldPage => oldPage > 1 ? oldPage - 1 : oldPage);
-// }, []);
-
-// const goToNextPage = useCallback(() => {
-//   setCurrentPage(oldPage => oldPage < totalPages ? oldPage + 1 : oldPage);
-// }, [totalPages]);
-
-//test push 1
