@@ -1,8 +1,15 @@
 import React, { useState, useMemo, useCallback, useEffect } from "react";
-// import "../spotify.css";
 import "@/app/spotify/components/spotify.css";
 
-
+/**Presentation
+ * Renders a pagination component.
+ *
+ * @param {Object} props - The component props.
+ * @param {number} props.currentPage - The current page number.
+ * @param {Function} props.goToPreviousPage - The function to navigate to the previous page.
+ * @param {Function} props.goToNextPage - The function to navigate to the next page.
+ * @returns {JSX.Element} The pagination component.
+ */
 interface PaginationProps {
   currentPage: number;
   goToPreviousPage: () => void;
@@ -23,7 +30,7 @@ export function Pagination({ currentPage, goToPreviousPage, goToNextPage }: Pagi
   );
 }
 
-/**
+/**Container
  * Handles pagination for the artist list.
  * Built to manage the current page state internally.
  * Drag and drop this function into your component to use it. Easily swappable with different pagination components.

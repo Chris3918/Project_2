@@ -2,13 +2,13 @@
 import React, { useState, useMemo, useCallback, useEffect } from "react";
 import "./spotify.css";
 import { useGetTopArtistsFullList } from "@/app/spotify/hooks/spotifyHooks";
-import { TimeRangeRadioButtonsOnChange } from "@/app/spotify/components/userTopArtist/components/timeRangeRadioButtons_component";
+import { TopArtistTimeRangeButtonsOnChange } from "@/app/spotify/components/userTopArtist/components/topArtistTimeRangeButtons_component";
 import { ArtistPaginationOnChange } from "@/app/spotify/components/userTopArtist/components/topArtistListPagination_component";
-import { TopArtistListOnChange } from "@/app/spotify/components/userTopArtist/components/topArtistListRecords_component";
-import { UserTopArtist } from "./userTopArtist/components/userTopArtistList_containerComponent";
+import { TopArtistListRecordsOnChange } from "@/app/spotify/components/userTopArtist/components/topArtistListRecords_component";
+import { UserTopArtistCard } from "./userTopArtist/components/userTopArtistList_containerComponent";
 
 export function CardGrid() {
-  const { userTopArtist } = UserTopArtist({
+  const { userTopArtistCard } = UserTopArtistCard({
     pageSize: 10,
     time_ranges: ["short_term", "medium_term", "long_term"],
     defaultTimeRange: "medium_term",
@@ -21,7 +21,7 @@ export function CardGrid() {
           <div className="mycard"></div>
         </div>
         <div className="mycard">
-          {userTopArtist}
+          {userTopArtistCard}
           {/* <MyTopArtistCard /> */}
         </div>
         <div className="mycard"></div>
@@ -41,7 +41,7 @@ export function CardGrid() {
 //   time_ranges = ["short_term", "medium_term", "long_term"],
 //   defaultTimeRange = "medium_term",
 // }: MyTopArtistCardProps): JSX.Element {
-//   const { timeRangeRadioButtonsComponent, selectedTimeRangeButton } = TimeRangeRadioButtonsOnChange({
+//   const { timeRangeRadioButtonsComponent, selectedTimeRangeButton } = TopArtistTimeRangeButtonsOnChange({
 //     defaultTimeRange,
 //     time_ranges,
 //   });

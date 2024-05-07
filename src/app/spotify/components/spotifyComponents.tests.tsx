@@ -10,7 +10,7 @@ import { UserTopArtistsAndTracks } from "@/app/spotify/interfaces/getUserTopArti
 import { SpotifyAPI_CS } from "@/app/Connections/Connections_CS/spotifyApi_CS";
 import "./spotify.css";
 import { useGetTopArtistsFullList } from "@/app/spotify/hooks/spotifyHooks";
-import { TimeRangeRadioButtons } from "@/app/spotify/components/userTopArtist/components/timeRangeRadioButtons_component";
+import { TimeRangeRadioButtons } from "@/app/spotify/components/userTopArtist/components/topArtistTimeRangeButtons_component";
 import { Pagination } from "@/app/spotify/components/userTopArtist/components/topArtistListPagination_component";
 import { TopArtistList } from "@/app/spotify/components/userTopArtist/components/topArtistListRecords_component";
 
