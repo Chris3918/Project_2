@@ -1,6 +1,6 @@
 import React from "react";
 import "@/app/spotify/components/spotify.css";
-import { UserTopArtistsAndTracks } from "../../../interfaces/getUserTopArtistsAndTracks";
+import { UserTopArtistsAndTracks } from "../../interfaces/getUserTopArtistsAndTracks";
 
 /**Presentation
  * Renders a list of top artists.
