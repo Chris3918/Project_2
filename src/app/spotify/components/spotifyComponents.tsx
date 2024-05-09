@@ -1,18 +1,8 @@
 "use client";
 import React, { useState, useMemo, useCallback, useEffect } from "react";
 import "./spotify.css";
-import { useGetTopArtistsFullList } from "@/app/spotify/hooks/spotifyHooks";
-import { TopArtistTimeRangeButtonsOnChange } from "@/app/spotify/components/userTopArtist/components/topArtistTimeRangeButtons_component";
-import { ArtistPaginationOnChange } from "@/app/spotify/components/userTopArtist/components/topArtistListPagination_component";
-import { TopArtistListRecordsOnChange } from "@/app/spotify/components/userTopArtist/components/topArtistListRecords_component";
-import { UserTopArtistCard } from "./userTopArtist/components/userTopArtistList_containerComponent";
-
+import { UserTopArtistCard } from "./userTopArtists/userTopArtistList_containerComponent";
 export function CardGrid() {
-  const { userTopArtistCard } = UserTopArtistCard({
-    pageSize: 10,
-    time_ranges: ["short_term", "medium_term", "long_term"],
-    defaultTimeRange: "medium_term",
-  });
   return (
     <div className="force-tocenter">
       <div className="mygrid-layout">
@@ -21,8 +11,11 @@ export function CardGrid() {
           <div className="mycard"></div>
         </div>
         <div className="mycard">
-          {userTopArtistCard}
-          {/* <MyTopArtistCard /> */}
+          <UserTopArtistCard
+            pageSize={10}
+            time_ranges={["short_term", "medium_term", "long_term"]}
+            defaultTimeRange={"medium_term"}
+          />
         </div>
         <div className="mycard"></div>
       </div>

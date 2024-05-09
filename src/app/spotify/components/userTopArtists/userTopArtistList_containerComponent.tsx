@@ -2,9 +2,9 @@
 import React, { useState, useMemo, useEffect } from "react";
 import "@/app/spotify/components/spotify.css";
 import { useGetTopArtistsFullList } from "@/app/spotify/hooks/spotifyHooks";
-import { TopArtistTimeRangeButtonsOnChange } from "@/app/spotify/components/userTopArtist/components/topArtistTimeRangeButtons_component";
-import { ArtistPaginationOnChange } from "@/app/spotify/components/userTopArtist/components/topArtistListPagination_component";
-import { TopArtistListRecordsOnChange } from "@/app/spotify/components/userTopArtist/components/topArtistListRecords_component";
+import { TopArtistTimeRangeButtonsOnChange } from "@/app/spotify/components/userTopArtists/topArtistTimeRangeButtons_component";
+import { ArtistPaginationOnChange } from "@/app/spotify/components/userTopArtists/topArtistListPagination_component";
+import { TopArtistListRecordsOnChange } from "@/app/spotify/components/userTopArtists/topArtistListRecords_component";
 
 interface UserTopArtistCardProps {
   pageSize: number;
@@ -15,19 +15,15 @@ interface UserTopArtistCardProps {
 ////////////////////////////
 // Wrapper Component ///////
 ////////////////////////////
-export function UserTopArtistCard({ pageSize, time_ranges, defaultTimeRange }: UserTopArtistCardProps) {
-  const { userTopArtistPresentation: userTopArtistCard } = UserTopArtistPresentation({
-    pageSize,
-    time_ranges,
-    defaultTimeRange,
-  });
-  return { userTopArtistCard };
+export function UserTopArtistCard({ pageSize, time_ranges, defaultTimeRange }: UserTopArtistCardProps): JSX.Element {
+  return (
+    <UserTopArtistPresentation pageSize={pageSize} time_ranges={time_ranges} defaultTimeRange={defaultTimeRange} />
+  );
 }
 
 ////////////////////////////
 // Presentation Component //
 ////////////////////////////
-
 function UserTopArtistPresentation({ pageSize, time_ranges, defaultTimeRange }: UserTopArtistCardProps) {
   const { timeRangeRadioButtonsComponent, topArtistListOnChangeComponent, paginationComponent } =
     UserTopArtistContainer({
@@ -35,7 +31,7 @@ function UserTopArtistPresentation({ pageSize, time_ranges, defaultTimeRange }: 
       time_ranges,
       defaultTimeRange,
     });
-  const userTopArtistPresentation = (
+  return (
     <div className="top-artist-container">
       <header className="top-artist-container-header">
         Top Artists
@@ -45,8 +41,6 @@ function UserTopArtistPresentation({ pageSize, time_ranges, defaultTimeRange }: 
       <footer className="top-artist-container-footer">{paginationComponent}</footer>
     </div>
   );
-
-  return { userTopArtistPresentation };
 }
 
 ////////////////////////////
