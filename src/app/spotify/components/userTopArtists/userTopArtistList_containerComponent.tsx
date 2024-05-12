@@ -5,12 +5,22 @@ import { useGetTopArtistsFullList } from "@/app/spotify/hooks/spotifyHooks";
 import { TopArtistTimeRangeButtonsOnChange } from "@/app/spotify/components/userTopArtists/topArtistTimeRangeButtons_component";
 import { ArtistPaginationOnChange } from "@/app/spotify/components/userTopArtists/topArtistListPagination_component";
 import { TopArtistListRecordsOnChange } from "@/app/spotify/components/userTopArtists/topArtistListRecords_component";
+import { useGetTopTracksFullList } from "@/app/spotify/hooks/spotifyHooks";
 
 interface UserTopArtistCardProps {
   pageSize: number;
   defaultTimeRange: string;
   time_ranges: string[];
+  
 }
+
+
+export function UserTopTracksCard({ pageSize, time_ranges, defaultTimeRange }: UserTopArtistCardProps): JSX.Element {
+  return (
+    <UserTopArtistPresentation pageSize={pageSize} time_ranges={time_ranges} defaultTimeRange={defaultTimeRange} />
+  );
+}
+
 
 ////////////////////////////
 // Wrapper Component ///////
@@ -54,7 +64,8 @@ function UserTopArtistContainer({ pageSize, time_ranges, defaultTimeRange }: Use
     time_ranges,
   });
 
-  const topArtistsFullList = useGetTopArtistsFullList(selectedTimeRangeButton);
+  // const topArtistsFullList = useGetTopArtistsFullList(selectedTimeRangeButton);
+  const topArtistsFullList = useGetTopTracksFullList(selectedTimeRangeButton);
 
   // Toggle the resetTrigger flag whenever topArtistsFullList changes
   useEffect(() => {
