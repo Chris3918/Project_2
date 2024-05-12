@@ -2,6 +2,7 @@
 import React, { useState, useMemo, useCallback, useEffect } from "react";
 import "./spotify.css";
 import { UserTopArtistCard } from "./userTopArtists/userTopArtistList_containerComponent";
+import { UserTopTracksCard } from "./userTopArtists/userTopArtistList_containerComponent";
 export function CardGrid() {
   return (
     <div className="force-tocenter">
@@ -17,7 +18,13 @@ export function CardGrid() {
             defaultTimeRange={"medium_term"}
           />
         </div>
-        <div className="mycard"></div>
+        <div className="mycard">
+          <UserTopTracksCard
+            pageSize={10}
+            time_ranges={["short_term", "medium_term", "long_term"]}
+            defaultTimeRange={"medium_term"}
+          />
+        </div>
       </div>
     </div>
   );
