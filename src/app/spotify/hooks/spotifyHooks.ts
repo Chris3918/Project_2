@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { SpotifyAPI_CS } from "@/app/Connections/Connections_CS/spotifyApi_CS";
 import { UserTopArtistsAndTracks } from "@/app/spotify/interfaces/getUserTopArtistsAndTracks";
+import { SpotifyUser } from '@/app/spotify/interfaces/userPublicProfileStructure';
 //notes: custom hooks must start with "use"
 
 /**
@@ -75,3 +76,90 @@ export const useGetTop50FullList = (time_range: string, cardType: "Artists" | "T
 
   return topArtistsFullList;
 };
+
+  
+// Define the hook  
+export const useUserPublicProfile = (userId: number) => {  
+  const [userInfo, setUserInfo] = useState<SpotifyUser.UserInfo | null>(null);  
+  const [loading, setLoading] = useState<boolean>(true);  
+  const [error, setError] = useState<string | null>(null);  
+  
+  useEffect(() => {  
+    // Create an instance of SpotifyAPI_CS  
+    const spotifyApi = new SpotifyAPI_CS();  
+  
+    // Define an async function to fetch the user's public profile  
+    const fetchUserPublicProfile = async () => {  
+      try {  
+        // Attempt to fetch the user's public profile using the provided method  
+        const userProfile = await spotifyApi.getUserPublicProfile(userId);  
+        // If successful, update the userInfo state  
+        setUserInfo(userProfile);  
+      } catch (err) {  
+        // If an error occurs, set the error state  
+        setError(err instanceof Error ? err.message : String(err));  
+      } finally {  
+        // Once the request is complete, set loading to false  
+        setLoading(false);  
+      }  
+    };  
+  
+    // Call the function to fetch the user's public profile  
+    fetchUserPublicProfile();  
+  }, [userId]); // The effect depends on userId and will re-run if userId changes  
+  
+  // Return the user info, loading status, and any error from the hook  
+  return { userInfo, loading, error };  
+};  
+  
+
+
+
+// export const useUserPublicProfile = (user_Id: number) => {
+
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import { useState, useEffect } from 'react';
+// import { SpotifyUser } from './spotifyApi_CS';
+
+// export function useUserPublicProfile(user_Id: number) {
+//   const [data, setData] = useState<SpotifyUser.UserInfo | null>(null);
+//   const [error, setError] = useState<Error | null>(null);
+//   const [loading, setLoading] = useState<boolean>(false);
+
+//   useEffect(() => {
+//     const fetchUserPublicProfile = async () => {
+//       setLoading(true);
+//       try {
+//         const profile = await SpotifyUser.getUserPublicProfile(user_Id);
+//         setData(profile);
+//       } catch (err) {
+//         setError(err);
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
+
+//     fetchUserPublicProfile();
+//   }, [user_Id]);
+
+//   return { data, error, loading };
+// }

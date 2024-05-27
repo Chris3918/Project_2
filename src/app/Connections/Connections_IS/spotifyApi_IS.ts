@@ -3,6 +3,7 @@ import { SpotifyArtist } from "../../spotify/interfaces/getArtistInfo";
 import { UserTopArtistsAndTracks } from "../../spotify/interfaces/getUserTopArtistsAndTracks";
 import { SpotifyTokenWithAuthResponse } from "../../spotify/interfaces/spotifyTokenWithAuth";
 import { RefreshTokenResponse } from "../../spotify/interfaces/refreshTokenResponse";
+import { SpotifyUser } from "@/app/spotify/interfaces/userPublicProfileStructure";
 
 export class SpotifyAPI_IS {
   private clientId: string;
@@ -12,7 +13,8 @@ export class SpotifyAPI_IS {
   constructor() {
     this.clientId = "855f5ae6d57c41bfbea2e0f013ba0f2d";
     this.clientSecret = "fa30964e8e1c4a8da297d6e06043da92";
-    this.refresh_Token = "AQCNbPZe3NvxzBJRcWYaGIQduaFox0Jxz8kF-ZMRCfmgPUnMxrVZ2D4wuOAn78XrTd96QMyBsW1dsJTb1Vb7n5_6PQjQm7aptNOVP3ZZdnpaKKWhHomabcFQWjd3RWl5X7M";
+    this.refresh_Token =
+      "AQCNbPZe3NvxzBJRcWYaGIQduaFox0Jxz8kF-ZMRCfmgPUnMxrVZ2D4wuOAn78XrTd96QMyBsW1dsJTb1Vb7n5_6PQjQm7aptNOVP3ZZdnpaKKWhHomabcFQWjd3RWl5X7M";
   }
   /**
    * original 2 constructors(cannot get process.env method to work)
@@ -32,19 +34,16 @@ export class SpotifyAPI_IS {
   // }
   */
 
-
   /**
    * Retrieves an access token from the Spotify API using client credentials.
    * Cannot be used to access or modify a user's personal data; only public data.
    * @returns A promise that resolves to a SpotifyTokenResponse object.
    */
-  public async getPublicToken(): Promise<SpotifyTokenResponse> {
+  public async getPublicToken_IS(): Promise<SpotifyTokenResponse> {
     const url = "https://accounts.spotify.com/api/token";
     const headers = {
       "Content-Type": "application/x-www-form-urlencoded",
-      Authorization:
-        "Basic " +
-        Buffer.from(this.clientId + ":" + this.clientSecret).toString("base64"),
+      Authorization: "Basic " + Buffer.from(this.clientId + ":" + this.clientSecret).toString("base64"),
     };
     const body = new URLSearchParams({
       grant_type: "client_credentials",
@@ -59,11 +58,11 @@ export class SpotifyAPI_IS {
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
+    const data = await response.json();
+    return data as SpotifyTokenResponse;
 
-    return response.json() as Promise<SpotifyTokenResponse>;
+    // return response.json() as Promise<SpotifyTokenResponse>;
   }
-
-
 
   /**
    * Retrieves information about an artist from Spotify API.
@@ -72,10 +71,7 @@ export class SpotifyAPI_IS {
    * @returns A Promise that resolves to the artist information.
    * @throws An error if the HTTP request fails.
    */
-  public async getArtistInfo(
-    token: string,
-    artistId: string
-  ): Promise<SpotifyArtist.ArtistInfo> {
+  public async getArtistInfo(token: string, artistId: string): Promise<SpotifyArtist.ArtistInfo> {
     const url = `https://api.spotify.com/v1/artists/${artistId}`;
     const headers = { Authorization: "Bearer " + token };
     const response = await fetch(url, {
@@ -87,7 +83,6 @@ export class SpotifyAPI_IS {
     }
     return response.json() as Promise<SpotifyArtist.ArtistInfo>;
   }
-
 
   /**
    * IMPORTANT: This method is only used ONCE to get a refresh token. The refresh token is used to get a new access token for different user requests(has access to different scopes).
@@ -117,9 +112,7 @@ export class SpotifyAPI_IS {
   public async getrefreshTokenWithAuthCode(): Promise<SpotifyTokenWithAuthResponse> {
     const url = "https://accounts.spotify.com/api/token";
     const headers = {
-      Authorization:
-        "Basic " +
-        Buffer.from(this.clientId + ":" + this.clientSecret).toString("base64"),
+      Authorization: "Basic " + Buffer.from(this.clientId + ":" + this.clientSecret).toString("base64"),
       "Content-Type": "application/x-www-form-urlencoded",
     };
     const body = new URLSearchParams({
@@ -141,14 +134,11 @@ export class SpotifyAPI_IS {
     return response.json() as Promise<SpotifyTokenWithAuthResponse>;
   }
 
-
   public async refreshToken_IS(): Promise<RefreshTokenResponse> {
     const url = "https://accounts.spotify.com/api/token";
     const headers = {
       "Content-Type": "application/x-www-form-urlencoded",
-      Authorization:
-        "Basic " +
-        Buffer.from(this.clientId + ":" + this.clientSecret).toString("base64"),
+      Authorization: "Basic " + Buffer.from(this.clientId + ":" + this.clientSecret).toString("base64"),
     };
     const body = new URLSearchParams({
       grant_type: "refresh_token",
@@ -168,11 +158,6 @@ export class SpotifyAPI_IS {
     return data as RefreshTokenResponse;
     // return response.json() as Promise<RefreshTokenResponse>;
   }
-
-
-
-
-
 
   /**
    * Retrieves the user's top items from Spotify API.
@@ -202,8 +187,18 @@ export class SpotifyAPI_IS {
     const data = await response.json();
     return data as UserTopArtistsAndTracks.SpotifyResponse;
   }
+
+  public async getUserPublicProfile_IS(token: string, user_Id: number): Promise<SpotifyUser.UserInfo> {
+    const url = `https://api.spotify.com/v1/users/${user_Id}`;
+    const headers = { Authorization: "Bearer " + token };
+    const response = await fetch(url, {
+      headers: headers,
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data as SpotifyUser.UserInfo;
+  }
 }
-
-
-
-

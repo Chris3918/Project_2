@@ -1,8 +1,10 @@
 //This is a wrapper module, customizations can be made here to the original _IS file. This is the file that will be imported into the rest of the application.
 import { RefreshTokenResponse } from '../../spotify/interfaces/refreshTokenResponse';
+import { SpotifyTokenResponse } from '@/app/spotify/interfaces/spotifyToken';
 import { UserTopArtistsAndTracks } from '../../spotify/interfaces/getUserTopArtistsAndTracks';
 import { SpotifyAPI_IS } from '../Connections_IS/spotifyApi_IS';
 import NodeCache from 'node-cache';
+import { SpotifyUser } from '@/app/spotify/interfaces/userPublicProfileStructure';
 
 
 //Todo: build out caching and expiration time
@@ -23,6 +25,10 @@ export class SpotifyAPI_CS {
         return this.spotifyApi_IS.refreshToken_IS();
     }
 
+    public getPublicToken(): Promise<SpotifyTokenResponse> {
+        return this.spotifyApi_IS.getPublicToken_IS();
+    }
+
 
 
     public async getUserTopTracks( time_range: string, limit: number): Promise<UserTopArtistsAndTracks.SpotifyResponse> {
@@ -33,6 +39,11 @@ export class SpotifyAPI_CS {
     public async getUserTopArtists( time_range: string, limit: number): Promise<UserTopArtistsAndTracks.SpotifyResponse> {
         const tokenResponse = await this.getRefreshToken();
         return this.spotifyApi_IS.getUserTopItems_IS( tokenResponse.access_token , 'artists', time_range, limit);
+    }
+
+    public async getUserPublicProfile( user_Id: number): Promise<SpotifyUser.UserInfo> {
+        const tokenResponse = await this.getPublicToken();
+        return this.spotifyApi_IS.getUserPublicProfile_IS( tokenResponse.access_token , user_Id);
     }
 
 
