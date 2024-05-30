@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useCallback, useEffect } from "react";
-import { TimeRangeRadioButtons } from "@/app/spotify/components/userTopArtists/topArtistTimeRangeButtons_component";
-import { TopArtistList } from "./userTopArtists/topArtistListRecords_component";
+import { TopArtistTimeRangeButtons } from "@/app/spotify/components/userTopArtists/topArtistTimeRangeButtons_component";
+import { TopArtistListRecords } from "./userTopArtists/topArtistListRecords_component";
 import { UserTopArtistsAndTracks } from "@/app/spotify/interfaces/getUserTopArtistsAndTracks";
 import { Pagination } from "./userTopArtists/topArtistListPagination_component";
 
@@ -24,7 +24,7 @@ export function TimeRangeSelector({ time_range, setTimeRange }: TimeRangeSelecto
   };
 
   return (
-    <TimeRangeRadioButtons
+    <TopArtistTimeRangeButtons
       time_ranges={time_ranges}
       selectedTimeRange={time_range}
       onTimeRangeChange={handleTimeRangeChange}
@@ -48,7 +48,7 @@ interface TopArtistsProps {
 }
 
 export function TopArtists({ currentArtists, startIndex }: TopArtistsProps) {
-  return <TopArtistList currentArtists={currentArtists} startIndex={startIndex} />;
+  return <TopArtistListRecords currentArtists={currentArtists} startIndex={startIndex} />;
 }
 
 
