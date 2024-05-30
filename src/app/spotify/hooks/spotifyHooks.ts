@@ -77,7 +77,9 @@ export const useGetTop50FullList = (time_range: string, cardType: "Artists" | "T
   return topArtistsFullList;
 };
 
-// Define the hook
+////////////////////////////
+// UserPublicData //////////
+////////////////////////////
 export const useUserPublicProfile = (userId: number) => {
   const [userInfo, setUserInfo] = useState<SpotifyUser.UserInfo | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
@@ -90,7 +92,7 @@ export const useUserPublicProfile = (userId: number) => {
     // Define an async function to fetch the user's public profile
     const fetchUserPublicProfile = async () => {
       try {
-        // Attempt to fetch the user's public profile using the provided method
+        // fetch user's public profile
         const userProfile = await spotifyApi.getUserPublicProfile(userId);
         // If successful, update the userInfo state
         setUserInfo(userProfile);
@@ -110,5 +112,3 @@ export const useUserPublicProfile = (userId: number) => {
   // Return the user info, loading status, and any error from the hook
   return { userInfo, loading, error };
 };
-
-
