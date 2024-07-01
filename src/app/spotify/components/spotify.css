@@ -13,6 +13,8 @@
   width: 50vw;
   height: 50vh;
   gap: 1rem;
+  /* border-width: 3.5px;
+  border-color: var(--yellow-800); */
 }
 
 .nested-grid {
@@ -20,6 +22,8 @@
   grid-template-rows: 1fr 1fr;
   height: 100%;
   gap: 1rem;
+  border-width: 3.5px;
+  border-color: var(--yellow-800);
 }
 
 .mycard {
@@ -205,16 +209,48 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 33%;
-  border-width: 0.5px;
-  border-color: var(--zinc-800);
+  height: 60%;
+  /* border-width: 0.5px;
+  border-color: var(--zinc-800); */
+
+  position: relative; /* This is necessary to contain the absolute child */ 
+}
+
+
+.userPictureRow-imageWrapper {  
+  height: 75%;
+  max-width: 150px; /* Set a max-width to ensure it doesn't grow too large */  
+  aspect-ratio: 1 / 1; /* Maintain the aspect ratio to 1:1, making it a square */  
+  border-radius: 50%; /* Circular shape */  
+  overflow: hidden;  
+  display: flex; /* To center the image inside the wrapper, this fixes the egg look. */ 
+  position: relative; /*keeps this contained within the parent container Position relative for the Image component using layout="fill"*/
+  /* border-width: 3.5px;
+  border-color: var(--zinc-800); */
+}  
+
+.userPictureRow-imageWrapper-profileImage {
+  /* border-radius: 50%; */
+  object-fit: cover;/* covers the area without stretching */ 
+}
+
+@media (max-width: 768px) {  
+  .userPictureRow-imageWrapper {  
+    width: 50%; /* Increase the size on smaller screens */  
+  }  
+}  
+  
+@media (max-width: 480px) {  
+  .userPictureRow-imageWrapper {  
+    width: 75%; /* Further increase the size on very small screens */  
+  }  
 }
 
 .userPublicData-container-userNameRow {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 33%;
+  height: 20%;
   border-width: 0.5px;
   border-color: var(--zinc-800);
 }
@@ -223,7 +259,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 33%;
+  gap: 8px;
+  height: 20%;
   border-width: 0.5px;
   border-color: var(--zinc-800);
+}
+
+.userPublicData-container-userDetailsRow h2 {
+  margin: 0;
+  font-size: 1em;
+}
+
+.userPublicData-container-userDetailsRow a {
+  font-size: 1em;
+}
+
+.userPublicData-container-userDetailsRow a:hover {
+  color: var(--zinc-500);
 }
