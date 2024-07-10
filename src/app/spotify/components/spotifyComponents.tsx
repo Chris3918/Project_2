@@ -6,16 +6,18 @@ import { UserProfileComponent } from "@/app/spotify/components/userPublicProfile
 
 export function CardGrid() {
   return (
-    <div className="force-tocenter">
-      <div className="mygrid-layout">
-        <div className="nested-grid">
-          <div className="mycard">
-            {" "}
-            <UserProfileComponent userId={1289186035} />{" "}
+    <div className="center-container">
+      <div className="grid-layout">
+        <div className="grid-layout__nested--horizontal">
+          <div className="grid-layout__nested--vertical">
+            <div className="card card--user-profile">
+              <UserProfileComponent userId={1289186035} />
+            </div>
+            <div className="card"></div>
           </div>
-          <div className="mycard"></div>
+          <div className="card"></div>
         </div>
-        <div className="mycard">
+        <div className="card card--top-artists">
           <UserTopArtistCard
             pageSize={10}
             time_ranges={["short_term", "medium_term", "long_term"]}
@@ -24,7 +26,7 @@ export function CardGrid() {
             cardType="Artists"
           />
         </div>
-        <div className="mycard">
+        <div className="card card--top-tracks">
           <UserTopArtistCard
             pageSize={10}
             time_ranges={["short_term", "medium_term", "long_term"]}

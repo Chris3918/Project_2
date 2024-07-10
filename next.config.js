@@ -9,6 +9,9 @@ module.exports = {
       "scontent-cdg4-1.xx.fbcdn.net",
       "scontent-ord5-1.xx.fbcdn.net",
       "scontent-iad3-2.xx.fbcdn.net",
+      "scontent-bru2-1.xx.fbcdn.net",
+      "scontent-cdg4-2.xx.fbcdn.net",
+      "scontent-ams4-1.xx.fbcdn.net",
     ],
   },
 };
