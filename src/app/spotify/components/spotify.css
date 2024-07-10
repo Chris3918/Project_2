@@ -1,32 +1,60 @@
 /* @import url("ui/customColors.css"); */
 
-.force-tocenter {
+/* NOTES:
+naming schema based on BEM (Block Element Modifier) methodology
+Block: The standalone entity that is meaningful on its own.
+Element: A part of a block that has no standalone meaning and is semantically tied to its block. They are semantically tied to their block. In BEM, elements are denoted by a double underscore __ following the block name. For example, if you had an element inside .card, it would be named .card__element-name.
+Modifier: A flag on a block or element used to change appearance or behavior. are denoted by a double dash -- following the block or element name. Examples: .card--user--profile, .card--top-artists, and .card--top-tracks.
+
+The grid-layout is the block,
+grid-layout__nested is an element within the grid layout,
+and card is a block that can have different modifiers like card--user--profile, card--top-artists, and card--top-tracks to indicate different types of cards. */
+
+
+
+/* /////////////////////////
+// CardGrid ///////////////
+///////////////////////// */
+
+/* The main container that centers everything */
+.center-container {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
 }
 
-.mygrid-layout {
+/* The grid layout that holds all cards */ 
+.grid-layout {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  width: 50vw;
-  height: 50vh;
+  grid-template-columns: 3fr 1fr 1fr;
+  width: 75vw;
+  height: 60vh;
+  gap: 1rem;
+  /* border-width: 3.5px;
+  border-color: var(--yellow-800); */
+}
+ 
+.grid-layout__nested--horizontal {
+  display: grid;
+  grid-template-rows: 4fr 6fr;
+  height: 100%;
   gap: 1rem;
   /* border-width: 3.5px;
   border-color: var(--yellow-800); */
 }
 
-.nested-grid {
+.grid-layout__nested--vertical {
   display: grid;
-  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 4fr 6fr;
   height: 100%;
   gap: 1rem;
-  border-width: 3.5px;
-  border-color: var(--yellow-800);
+  /* border-width: 3.5px;
+  border-color: var(--yellow-800); */
 }
 
-.mycard {
+/* A generic card component; used as all section containers */
+.card {
   border-radius: 0.5rem;
   border-width: 0.5px;
   background: var(--zinc-950);
@@ -34,9 +62,30 @@
   border-style: solid;
   width: 100%;
   height: 100%;
-  /* word-wrap: break-word; */
-  /* max-width: 325px; */
 }
+
+/* Specific card for user profile */  
+.card--user-profile { 
+  /* border-width: 3.5px;
+  border-color: var(--yellow-800);  */
+}  
+  
+/* Specific card for top artists */  
+.card--top-artists {  
+  /* border-width: 3.5px;
+  border-color: var(--yellow-800);  */
+}  
+  
+/* Specific card for top tracks */  
+.card--top-tracks {  
+  /* border-width: 3.5px;
+  border-color: var(--yellow-800);  */
+}
+
+
+/* /////////////////////////
+// UserTopArtistCard ///////
+///////////////////////// */
 
 .top-artist-container {
   /* display: flex; what is this doing*/
@@ -196,13 +245,7 @@
   flex-direction: column;
   height: 100%;
   /* border-width: 0.5px;
-  border-color: var(--zinc-800); */
-
-  /* display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh; */
+  border-color: var(--yellow-800); */
 }
 
 .userPublicData-container-userPictureRow {
@@ -210,10 +253,9 @@
   align-items: center;
   justify-content: center;
   height: 60%;
-  /* border-width: 0.5px;
-  border-color: var(--zinc-800); */
-
   position: relative; /* This is necessary to contain the absolute child */ 
+    /* border-width: 0.5px;
+  border-color: var(--zinc-800); */
 }
 
 
@@ -230,7 +272,6 @@
 }  
 
 .userPictureRow-imageWrapper-profileImage {
-  /* border-radius: 50%; */
   object-fit: cover;/* covers the area without stretching */ 
 }
 
@@ -251,8 +292,8 @@
   align-items: center;
   justify-content: center;
   height: 20%;
-  border-width: 0.5px;
-  border-color: var(--zinc-800);
+  /* border-width: 0.5px;
+  border-color: var(--zinc-800); */
 }
 
 .userPublicData-container-userDetailsRow {
@@ -261,8 +302,8 @@
   justify-content: center;
   gap: 8px;
   height: 20%;
-  border-width: 0.5px;
-  border-color: var(--zinc-800);
+  /* border-width: 0.5px;
+  border-color: var(--zinc-800); */
 }
 
 .userPublicData-container-userDetailsRow h2 {
