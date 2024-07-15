@@ -16,10 +16,10 @@ interface TopArtistListRecordsProps {
 
 export function TopArtistListRecords({ currentArtists, startIndex }: TopArtistListRecordsProps) {
   return (
-    <ol className="top-artist-list">
+    <ol className="user-top-artist-card__list">
       {currentArtists.map((artist, index) => (
-        <li className="top-artist-list-record" key={index}>
-          <h2 className="top-artist-list-record-text">
+        <li className="user-top-artist-card__list-record" key={index}>
+          <h2 className="user-top-artist-card__list-record-text">
             {startIndex + index + 1}. {artist.name}
           </h2>
         </li>

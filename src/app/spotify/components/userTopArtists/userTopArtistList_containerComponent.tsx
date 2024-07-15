@@ -53,13 +53,13 @@ function UserTopArtistPresentation({
       cardType,
     });
   return (
-    <div className="top-artist-container">
-      <header className="top-artist-container-header">
+    <div className="user-top-artist-card">
+      <header className="user-top-artist-card__header">
         {cardTitle}
         {timeRangeRadioButtonsComponent}
       </header>
-      <main className="top-artist-list-container">{topArtistListOnChangeComponent}</main>
-      <footer className="top-artist-container-footer">{paginationComponent}</footer>
+      <main className="user-top-artist-card__list-container">{topArtistListOnChangeComponent}</main>
+      <footer className="user-top-artist-card__footer">{paginationComponent}</footer>
     </div>
   );
 }

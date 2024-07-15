@@ -18,12 +18,12 @@ interface PaginationProps {
 
 export function Pagination({ currentPage, goToPreviousPage, goToNextPage }: PaginationProps) {
   return (
-    <div className="pagination">
-      <button className="pagination-button" onClick={goToPreviousPage}>
+    <div className="user-top-artist-card__pagination">
+      <button className="user-top-artist-card__pagination-button" onClick={goToPreviousPage}>
         &lt;
       </button>
-      <span className="pagination-page-number">{currentPage}</span>
-      <button className="pagination-button" onClick={goToNextPage}>
+      <span className="user-top-artist-card__page-number">{currentPage}</span>
+      <button className="user-top-artist-card__pagination-button" onClick={goToNextPage}>
         &gt;
       </button>
     </div>
