@@ -3,7 +3,7 @@
 /* NOTES:
 naming schema based on BEM (Block Element Modifier) methodology
 Block: The standalone entity that is meaningful on its own.
-Element: A part of a block that has no standalone meaning and is semantically tied to its block. They are semantically tied to their block. In BEM, elements are denoted by a double underscore __ following the block name. For example, if you had an element inside .card, it would be named .card__element-name.
+Element: A part of a block that has no standalone meaning and is semantically tied to its block. In BEM, elements are denoted by a double underscore __ following the block name. For example, if you had an element inside .card, it would be named .card__element-name.
 Modifier: A flag on a block or element used to change appearance or behavior. are denoted by a double dash -- following the block or element name. Examples: .card--user--profile, .card--top-artists, and .card--top-tracks.
 
 The grid-layout is the block,
@@ -66,18 +66,21 @@ and card is a block that can have different modifiers like card--user--profile, 
 
 /* Specific card for user profile */  
 .card--user-profile { 
+  content: "";
   /* border-width: 3.5px;
   border-color: var(--yellow-800);  */
 }  
   
 /* Specific card for top artists */  
 .card--top-artists {  
+  content: "";
   /* border-width: 3.5px;
   border-color: var(--yellow-800);  */
 }  
   
 /* Specific card for top tracks */  
-.card--top-tracks {  
+.card--top-tracks { 
+  content: ""; 
   /* border-width: 3.5px;
   border-color: var(--yellow-800);  */
 }
@@ -87,18 +90,20 @@ and card is a block that can have different modifiers like card--user--profile, 
 // UserTopArtistCard ///////
 ///////////////////////// */
 
-.top-artist-container {
+/* Base block for the User Top Artist Card */ 
+.user-top-artist-card {
   /* display: flex; what is this doing*/
   flex-direction: column;
   height: 100%;
 }
 
-.top-artist-container-header {
+/* Element for the header section of the card */
+.user-top-artist-card__header {
+  color: var(--zinc-200);
   height: 10%;
   font-weight: 600;
   /* padding: 1rem; */
-  /* border-width: 0.5px;
-  border-color: var(--zinc-800); */
+
   border-style: solid;
   width: 100%;
   display: flex;
@@ -106,9 +111,12 @@ and card is a block that can have different modifiers like card--user--profile, 
   justify-content: center;
   position: relative;
   font-size: 2vh;
+  /* border-width: 0.5px;
+  border-color: var(--zinc-800); */
 }
 
-.radio-button-section-container {
+/* Element for the radio button section container */
+.user-top-artist-card__radio-section {
   /* border-width: 0.5px;
   border-color: var(--zinc-800); */
   width: 30%;
@@ -119,7 +127,8 @@ and card is a block that can have different modifiers like card--user--profile, 
   display: flex;
 }
 
-.radio-button-container {
+/* Element for the radio button container */ 
+.user-top-artist-card__radio-container {
   /* border-width: 0.5px;
   border-color: var(--zinc-800); */
   display: flex;
@@ -130,22 +139,25 @@ and card is a block that can have different modifiers like card--user--profile, 
   width: 33%;
 }
 
-.radio-button {
+/* Element for the radio button */
+.user-top-artist-card__radio-button {
   appearance: none;
   width: 10px;
   height: 10px;
   border-radius: 50%;
   outline: none;
-  box-shadow: 0 0 0 1px var(--zinc-800);
+  box-shadow: 0 0 0 1px var(--zinc-700);
   transition: 0.5s;
   cursor: pointer;
 }
 
-.radio-button:checked {
+/* Modifier for the checked state of the radio button */  
+.user-top-artist-card__radio-button:checked {
   box-shadow: 0 0 0 1px var(--zinc-600);
 }
 
-.radio-button:checked::after {
+/* Element for the checked state indicator */  
+.user-top-artist-card__radio-button:checked::after {
   content: "";
   display: block;
   width: 7px;
@@ -158,14 +170,15 @@ and card is a block that can have different modifiers like card--user--profile, 
   transform: translate(-50%, -50%);
 }
 
-.radio-button-label {
+/* Element for the radio button label */ 
+.user-top-artist-card__radio-label {
   margin-left: 10px;
   color: var(--zinc-400);
   cursor: pointer;
 }
 
-
-.top-artist-container-footer {
+/* Element for the footer section of the card */
+.user-top-artist-card__footer {
   height: 5%;
   border-color: var(--zinc-800);
   /* border-width: 0.5px; */
@@ -176,14 +189,16 @@ and card is a block that can have different modifiers like card--user--profile, 
   justify-content: center;
 }
 
-.pagination {
+/* Element for pagination */
+.user-top-artist-card__pagination {
   display: flex;
   align-items: center;
   font-size: 1vh;
   padding-bottom: 0.5rem;
 }
 
-.pagination-button {
+/* Element for pagination button */  
+.user-top-artist-card__pagination-button {
   color: var(--zinc-400);
   border: none;
   padding: 0.5rem 1rem;
@@ -191,24 +206,28 @@ and card is a block that can have different modifiers like card--user--profile, 
   cursor: pointer;
 }
 
-.pagination-page-number {
+/* Element for pagination page number */
+.user-top-artist-card__page-number {
   /* font-size: 1rem; */
   color: var(--zinc-400);
 }
 
-.top-artist-list-container {
+/* Element for the list container */
+.user-top-artist-card__list-container {
   width: 100%;
   height: 85%;
   /* border-width: 0.5px; */
   border-color: var(--zinc-800);
 }
 
-.top-artist-list {
+/* Element for the list */ 
+.user-top-artist-card__list {
   height: 100%;
   list-style: none;
 }
 
-.top-artist-list-record {
+/* Element for the list record */ 
+.user-top-artist-card__list-record {
   padding-left: 5%;
   display: flex;
   align-items: center;
@@ -221,16 +240,19 @@ and card is a block that can have different modifiers like card--user--profile, 
   /* Center the container */
 }
 
-.top-artist-list-record-text {
-  color: var(--zinc-400);
+/* Element for the text within the list record */
+.user-top-artist-card__list-record-text {
+  color: var(--zinc-200);
   font-size: 1.2vh;
 }
 
-.top-artist-list-record:last-child {
+/* Modifier for the last record in the list */
+.user-top-artist-card__list-record:last-child {
   border-bottom: none;
 }
 
-.top-artist-list-record:hover {
+/* Modifier for the hover state of the list record */ 
+.user-top-artist-card__list-record:hover {
   background: var(--zinc-900);
 }
 
@@ -240,7 +262,8 @@ and card is a block that can have different modifiers like card--user--profile, 
 // UserPublicData //////////
 ///////////////////////// */
 
-.userPublicData-container {
+/* Base block for the User Public Data Card */ 
+.user-public-data-card {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -248,7 +271,8 @@ and card is a block that can have different modifiers like card--user--profile, 
   border-color: var(--yellow-800); */
 }
 
-.userPublicData-container-userPictureRow {
+/* Element for the user picture row */
+.user-public-data-card__picture-row {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -258,8 +282,8 @@ and card is a block that can have different modifiers like card--user--profile, 
   border-color: var(--zinc-800); */
 }
 
-
-.userPictureRow-imageWrapper {  
+/* Element for the image wrapper */
+.user-public-data-card__image-wrapper {  
   height: 75%;
   max-width: 150px; /* Set a max-width to ensure it doesn't grow too large */  
   aspect-ratio: 1 / 1; /* Maintain the aspect ratio to 1:1, making it a square */  
@@ -275,19 +299,24 @@ and card is a block that can have different modifiers like card--user--profile, 
   object-fit: cover;/* covers the area without stretching */ 
 }
 
+/* Modifier for the image wrapper at medium screen sizes */ 
 @media (max-width: 768px) {  
-  .userPictureRow-imageWrapper {  
+  .user-public-data-card__image-wrapper {  
     width: 50%; /* Increase the size on smaller screens */  
   }  
 }  
-  
+
+/* Modifier for the image wrapper at small screen sizes */
 @media (max-width: 480px) {  
-  .userPictureRow-imageWrapper {  
+  .user-public-data-card__image-wrapper {  
     width: 75%; /* Further increase the size on very small screens */  
   }  
 }
 
-.userPublicData-container-userNameRow {
+/* Element for the user name row */ 
+.user-public-data-card__name-row {
+  color: var(--zinc-200);
+  letter-spacing: -0.01em;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -296,9 +325,10 @@ and card is a block that can have different modifiers like card--user--profile, 
   border-color: var(--zinc-800); */
 }
 
-.userPublicData-container-userDetailsRow {
+/* Element for the user details row */
+.user-public-data-card__details-row {
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
   gap: 8px;
   height: 20%;
@@ -306,15 +336,20 @@ and card is a block that can have different modifiers like card--user--profile, 
   border-color: var(--zinc-800); */
 }
 
-.userPublicData-container-userDetailsRow h2 {
+/* Element for the details row heading */
+.user-public-data-card__details-row h2 {
+  letter-spacing: -0.01em;
   margin: 0;
   font-size: 1em;
 }
 
-.userPublicData-container-userDetailsRow a {
+/* Element for the details row link */ 
+.user-public-data-card__details-row a {
+  letter-spacing: -0.01em;
   font-size: 1em;
 }
 
-.userPublicData-container-userDetailsRow a:hover {
+/* Modifier for the details row link hover state */ 
+.user-public-data-card__details-row a:hover {
   color: var(--zinc-500);
 }

@@ -14,9 +14,9 @@ export const UserProfileComponent = ({ userId }: { userId: number }): JSX.Elemen
     loading ? <div>Loading...</div> :  
     error ? <div>Error: {error}</div> :  
     !userInfo ? <div>No user information available.</div> :  
-    <div className="userPublicData-container">
-      <div className="userPublicData-container-userPictureRow">
-        <div className="userPictureRow-imageWrapper">
+    <div className="user-public-data-card">
+      <div className="user-public-data-card__picture-row">
+        <div className="user-public-data-card__image-wrapper">
           <Image
             src={imageUrl}
             layout="fill"//"responsive"
@@ -27,8 +27,8 @@ export const UserProfileComponent = ({ userId }: { userId: number }): JSX.Elemen
         </div>
       </div>
       {/* Image is a component from Next.js...had to create next.config.js file and add image domain */}
-      <h1 className="userPublicData-container-userNameRow">{userInfo.display_name}</h1>
-      <div className="userPublicData-container-userDetailsRow">
+      <h1 className="user-public-data-card__name-row">{userInfo.display_name}</h1>
+      <div className="user-public-data-card__details-row">
         <h2>{userInfo.followers.total} followers</h2>
         <span> | </span>
         <a href={userInfo.external_urls.spotify} target="_blank" rel="noopener noreferrer">

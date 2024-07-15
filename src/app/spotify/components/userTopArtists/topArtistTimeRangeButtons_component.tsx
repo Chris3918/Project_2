@@ -28,15 +28,15 @@ export function TopArtistTimeRangeButtons({
   onTimeRangeChange,
 }: TopArtistTimeRangeButtonsProps) {
   return (
-    <div className="radio-button-section-container">
+    <div className="user-top-artist-card__radio-section">
       {time_ranges.map((time_range, index) => (
-        <div className="radio-button-container" key={index}>
+        <div className="user-top-artist-card__radio-container" key={index}>
           <input
             type="radio"
             value={time_range}
             checked={selectedTimeRange === time_range}
             onChange={onTimeRangeChange}
-            className="radio-button"
+            className="user-top-artist-card__radio-button"
             title={buttonHoverText[time_range]}
           />
         </div>
